@@ -28,8 +28,7 @@ async def register(
     existing_User = await User.find_one(query)
 
     if existing_User is not None:
-        raise HTTPException(status_code=409, detail=f"{newUser.username} or {
-                            newUser.email} already exists")
+        raise HTTPException(status_code=409, detail=f"{newUser.username} or {newUser.email} already exists")
     user = await User(**newUser.model_dump()).save()
     return user
 
